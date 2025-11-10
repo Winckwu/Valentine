@@ -1,17 +1,33 @@
 body {
-	background: linear-gradient(-45deg, #000000, #1a0033, #330033, #000000);
-	background-size: 400% 400%;
-	-webkit-transition:background-color linear 5s;
-	-moz-transition:background-color linear 5s;
-	-o-transition:background-color linear 5s;
-	-ms-transition:background-color linear 5s;
-	transition:background-color linear 5s;
+	background: #0a0a0a;
+	background-image:
+		linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+	background-size: 50px 50px;
 	overflow-x:hidden;
 	position: relative;
+	font-family: 'Orbitron', 'Signika', sans-serif;
 }
 
-/* 星星背景效果 */
-body:before {
+/* 霓虹网格动画 */
+body::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background:
+		linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
+	background-size: 100px 100px;
+	animation: gridMove 20s linear infinite;
+	pointer-events: none;
+	z-index: 1;
+}
+
+/* 粒子效果层 */
+body::after {
 	content: "";
 	position: fixed;
 	top: 0;
@@ -19,47 +35,45 @@ body:before {
 	width: 100%;
 	height: 100%;
 	background-image:
-		radial-gradient(2px 2px at 20% 30%, white, transparent),
-		radial-gradient(2px 2px at 60% 70%, white, transparent),
-		radial-gradient(1px 1px at 50% 50%, white, transparent),
-		radial-gradient(1px 1px at 80% 10%, white, transparent),
-		radial-gradient(2px 2px at 90% 60%, white, transparent),
-		radial-gradient(1px 1px at 33% 80%, white, transparent),
-		radial-gradient(1px 1px at 15% 90%, white, transparent);
+		radial-gradient(2px 2px at 20% 30%, #00ffff, transparent),
+		radial-gradient(2px 2px at 60% 70%, #ff00ff, transparent),
+		radial-gradient(1px 1px at 50% 50%, #00ff00, transparent),
+		radial-gradient(2px 2px at 80% 10%, #ffff00, transparent),
+		radial-gradient(1px 1px at 90% 60%, #ff0080, transparent),
+		radial-gradient(2px 2px at 33% 80%, #0080ff, transparent),
+		radial-gradient(1px 1px at 15% 90%, #ff8000, transparent);
 	background-size: 200% 200%;
-	background-position: 0% 0%;
-	opacity: 0;
-	animation: stars 3s ease-in forwards, twinkle 4s ease-in-out infinite;
+	animation: particles 30s ease infinite;
+	opacity: 0.6;
 	pointer-events: none;
+	z-index: 1;
 }
 
-@keyframes stars {
-	to {
-		opacity: 1;
-	}
+@keyframes gridMove {
+	0% { background-position: 0 0, 0 0; }
+	100% { background-position: 100px 100px, 100px 100px; }
 }
 
-@keyframes twinkle {
+@keyframes particles {
 	0%, 100% {
-		opacity: 0.5;
+		background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+		opacity: 0.6;
 	}
 	50% {
+		background-position: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
 		opacity: 1;
 	}
 }
 .container {
 	display: none;
+	position: relative;
+	z-index: 10;
 }
 .peach {
-	background: linear-gradient(-45deg, #FFE4E1, #FFB6C1, #FFC0CB, #FFDAB9);
-	background-size: 400% 400%;
+	background: #0a0a0a;
 }
 .peach-after {
-	-webkit-animation:peach_alive linear 8s infinite;
-	-moz-animation:peach_alive linear 8s infinite;
-	-o-animation:peach_alive linear 8s infinite;
-	-ms-animation:peach_alive linear 8s infinite;
-	animation:peach_alive linear 8s infinite;
+	background: #0a0a0a;
 }
 
 @-webkit-keyframes peach_alive {
@@ -1117,31 +1131,61 @@ audio {
 .balloons {
 	position: fixed;
 	bottom: -200px;
-	opacity: 0.8;
+	opacity: 0.9;
 	z-index: 99;
 	width: 100px;
 	height: 183px;
 	background-repeat: no-repeat no-repeat;
 	background-size: 100px 183px;
-	filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-	transition: all 0.3s ease;
+	filter:
+		drop-shadow(0 0 20px rgba(0, 255, 255, 0.8))
+		drop-shadow(0 0 40px rgba(255, 0, 255, 0.6));
+	transition: all 0.5s ease;
+	animation: float 4s ease-in-out infinite;
 }
 .balloons:hover {
-	filter: drop-shadow(0 15px 30px rgba(102, 126, 234, 0.6));
-	transform: scale(1.05);
+	filter:
+		drop-shadow(0 0 30px rgba(0, 255, 255, 1))
+		drop-shadow(0 0 60px rgba(255, 0, 255, 1));
+	transform: scale(1.1) rotate(5deg);
 }
 .balloons h2 {
 	text-transform: uppercase;
-	font-family: 'Signika', sans-serif;
-	font-size: 50px;
-	color: #FFF;
+	font-family: 'Orbitron', sans-serif;
+	font-size: 55px;
+	font-weight: 900;
+	color: #fff;
 	text-shadow:
-		0 0 10px rgba(255, 255, 255, 0.8),
-		0 0 20px rgba(102, 126, 234, 0.6),
-		0 0 30px rgba(118, 75, 162, 0.4),
-		2px 2px 4px rgba(0, 0, 0, 0.3);
+		0 0 10px currentColor,
+		0 0 20px currentColor,
+		0 0 30px currentColor,
+		0 0 40px currentColor,
+		0 0 70px currentColor;
 	display: none;
-	font-weight: bold;
+	animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes float {
+	0%, 100% { transform: translateY(0px); }
+	50% { transform: translateY(-20px); }
+}
+
+@keyframes neonPulse {
+	0%, 100% {
+		text-shadow:
+			0 0 10px currentColor,
+			0 0 20px currentColor,
+			0 0 30px currentColor,
+			0 0 40px currentColor;
+	}
+	50% {
+		text-shadow:
+			0 0 20px currentColor,
+			0 0 30px currentColor,
+			0 0 40px currentColor,
+			0 0 70px currentColor,
+			0 0 100px currentColor;
+	}
 }
 #b1,#b11 {
 	background-image: url('b1.png');
@@ -1322,53 +1366,152 @@ audio {
 	display: none;
 }
 .message p {
-	font-family: 'Signika', sans-serif;
-	font-size: 32px;
-	color: #FF6B9D;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+	font-family: 'Orbitron', sans-serif;
+	font-size: 28px;
+	font-weight: 700;
+	color: #00ffff;
+	text-shadow:
+		0 0 10px #00ffff,
+		0 0 20px #00ffff,
+		0 0 30px #00ffff,
+		0 0 40px #ff00ff,
+		0 0 70px #ff00ff;
 	display: none;
-	font-weight: bold;
-	animation: glow 2s ease-in-out infinite;
+	animation: textGlitch 3s ease-in-out infinite, colorShift 8s linear infinite;
+	letter-spacing: 2px;
+	position: relative;
 }
 
-@keyframes glow {
+.message p strong {
+	color: #ff00ff;
+	font-size: 36px;
+	text-shadow:
+		0 0 10px #ff00ff,
+		0 0 20px #ff00ff,
+		0 0 40px #ff00ff,
+		0 0 80px #ff00ff;
+	animation: strongPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes textGlitch {
+	0%, 90%, 100% {
+		transform: translate(0);
+	}
+	92% {
+		transform: translate(-2px, 2px);
+	}
+	94% {
+		transform: translate(2px, -2px);
+	}
+	96% {
+		transform: translate(-2px, -2px);
+	}
+	98% {
+		transform: translate(2px, 2px);
+	}
+}
+
+@keyframes colorShift {
+	0% {
+		color: #00ffff;
+		text-shadow:
+			0 0 10px #00ffff,
+			0 0 20px #00ffff,
+			0 0 30px #00ffff;
+	}
+	33% {
+		color: #ff00ff;
+		text-shadow:
+			0 0 10px #ff00ff,
+			0 0 20px #ff00ff,
+			0 0 30px #ff00ff;
+	}
+	66% {
+		color: #00ff00;
+		text-shadow:
+			0 0 10px #00ff00,
+			0 0 20px #00ff00,
+			0 0 30px #00ff00;
+	}
+	100% {
+		color: #00ffff;
+		text-shadow:
+			0 0 10px #00ffff,
+			0 0 20px #00ffff,
+			0 0 30px #00ffff;
+	}
+}
+
+@keyframes strongPulse {
 	0%, 100% {
-		filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.7));
+		transform: scale(1);
+		text-shadow:
+			0 0 10px #ff00ff,
+			0 0 20px #ff00ff,
+			0 0 40px #ff00ff;
 	}
 	50% {
-		filter: drop-shadow(0 0 20px rgba(118, 75, 162, 0.9));
+		transform: scale(1.05);
+		text-shadow:
+			0 0 20px #ff00ff,
+			0 0 40px #ff00ff,
+			0 0 80px #ff00ff,
+			0 0 120px #ff00ff;
 	}
 }
 
 .btn-primary {
-        border: none;
-        border-radius: 25px;
+        position: relative;
+        border: 2px solid #00ffff;
+        border-radius: 0;
         padding: 12px 24px;
         text-transform: uppercase;
-        font-family: 'Signika', sans-serif;
+        font-family: 'Orbitron', sans-serif;
         font-weight: 700;
-        color: #fff;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: #00ffff;
+        background: rgba(0, 0, 0, 0.8);
+        box-shadow:
+            0 0 10px #00ffff,
+            inset 0 0 10px rgba(0, 255, 255, 0.1);
         transition: all 0.3s ease;
         cursor: pointer;
         margin: 5px;
+        overflow: hidden;
+        z-index: 100;
 }
-    .btn-primary:hover,
-    .btn-primary:focus,
-    .btn-primary:active,
-    .btn-primary.active,
-    .open .dropdown-toggle.btn-primary {
-        border: none;
-        color: #fff;
-        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        transform: translateY(-2px);
-    }
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+        border-color: #ff00ff;
+        color: #ff00ff;
+        background: rgba(0, 0, 0, 0.9);
+        box-shadow:
+            0 0 20px #ff00ff,
+            0 0 40px #ff00ff,
+            inset 0 0 20px rgba(255, 0, 255, 0.2);
+        transform: translateY(-2px) scale(1.05);
+        animation: glitch 0.3s infinite;
+}
 
 
 
@@ -1378,3 +1521,70 @@ audio {
     		-webkit-transform: scale(0.9);
     	}
     }*/
+/* 故障艺术效果 */
+@keyframes glitch {
+	0% {
+		transform: translate(0);
+	}
+	20% {
+		transform: translate(-2px, 2px);
+	}
+	40% {
+		transform: translate(-2px, -2px);
+	}
+	60% {
+		transform: translate(2px, 2px);
+	}
+	80% {
+		transform: translate(2px, -2px);
+	}
+	100% {
+		transform: translate(0);
+	}
+}
+
+/* 扫描线效果 */
+.container::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: repeating-linear-gradient(
+		0deg,
+		rgba(0, 0, 0, 0.1) 0px,
+		transparent 1px,
+		transparent 2px,
+		rgba(0, 0, 0, 0.1) 3px
+	);
+	pointer-events: none;
+	z-index: 1000;
+	animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+	0% { transform: translateY(0); }
+	100% { transform: translateY(100vh); }
+}
+
+/* 横幅优化 */
+.bannar {
+	filter:
+		drop-shadow(0 0 20px rgba(0, 255, 255, 0.8))
+		drop-shadow(0 0 40px rgba(255, 0, 255, 0.6));
+	animation: bannerGlow 2s ease-in-out infinite;
+}
+
+@keyframes bannerGlow {
+	0%, 100% {
+		filter:
+			drop-shadow(0 0 20px rgba(0, 255, 255, 0.8))
+			drop-shadow(0 0 40px rgba(255, 0, 255, 0.6));
+	}
+	50% {
+		filter:
+			drop-shadow(0 0 40px rgba(0, 255, 255, 1))
+			drop-shadow(0 0 80px rgba(255, 0, 255, 1));
+	}
+}
