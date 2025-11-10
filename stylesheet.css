@@ -1,19 +1,58 @@
 body {
-	/*background-color: #FFDAB9;	*/
-	background-color: #000;
+	background: linear-gradient(-45deg, #000000, #1a0033, #330033, #000000);
+	background-size: 400% 400%;
 	-webkit-transition:background-color linear 5s;
 	-moz-transition:background-color linear 5s;
 	-o-transition:background-color linear 5s;
 	-ms-transition:background-color linear 5s;
 	transition:background-color linear 5s;
 	overflow-x:hidden;
+	position: relative;
+}
+
+/* 星星背景效果 */
+body:before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image:
+		radial-gradient(2px 2px at 20% 30%, white, transparent),
+		radial-gradient(2px 2px at 60% 70%, white, transparent),
+		radial-gradient(1px 1px at 50% 50%, white, transparent),
+		radial-gradient(1px 1px at 80% 10%, white, transparent),
+		radial-gradient(2px 2px at 90% 60%, white, transparent),
+		radial-gradient(1px 1px at 33% 80%, white, transparent),
+		radial-gradient(1px 1px at 15% 90%, white, transparent);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	opacity: 0;
+	animation: stars 3s ease-in forwards, twinkle 4s ease-in-out infinite;
+	pointer-events: none;
+}
+
+@keyframes stars {
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes twinkle {
+	0%, 100% {
+		opacity: 0.5;
+	}
+	50% {
+		opacity: 1;
+	}
 }
 .container {
 	display: none;
 }
 .peach {
-	background-color: #FFDAB9;
-	
+	background: linear-gradient(-45deg, #FFE4E1, #FFB6C1, #FFC0CB, #FFDAB9);
+	background-size: 400% 400%;
 }
 .peach-after {
 	-webkit-animation:peach_alive linear 8s infinite;
@@ -1078,20 +1117,31 @@ audio {
 .balloons {
 	position: fixed;
 	bottom: -200px;
-	opacity: 0.6;
+	opacity: 0.8;
 	z-index: 99;
 	width: 100px;
 	height: 183px;
 	background-repeat: no-repeat no-repeat;
 	background-size: 100px 183px;
+	filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+	transition: all 0.3s ease;
+}
+.balloons:hover {
+	filter: drop-shadow(0 15px 30px rgba(102, 126, 234, 0.6));
+	transform: scale(1.05);
 }
 .balloons h2 {
 	text-transform: uppercase;
 	font-family: 'Signika', sans-serif;
 	font-size: 50px;
-	color: #BF4136;
-	text-shadow: 5px 5px 5px #FFF;
+	color: #FFF;
+	text-shadow:
+		0 0 10px rgba(255, 255, 255, 0.8),
+		0 0 20px rgba(102, 126, 234, 0.6),
+		0 0 30px rgba(118, 75, 162, 0.4),
+		2px 2px 4px rgba(0, 0, 0, 0.3);
 	display: none;
+	font-weight: bold;
 }
 #b1,#b11 {
 	background-image: url('b1.png');
@@ -1273,31 +1323,51 @@ audio {
 }
 .message p {
 	font-family: 'Signika', sans-serif;
-	font-size: 30px;
-	text-transform: uppercase;
-	color: #C4515C;
-	text-shadow: 2px 2px 2px #FFF;
+	font-size: 32px;
+	color: #FF6B9D;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
 	display: none;
 	font-weight: bold;
+	animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+	0%, 100% {
+		filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.7));
+	}
+	50% {
+		filter: drop-shadow(0 0 20px rgba(118, 75, 162, 0.9));
+	}
 }
 
 .btn-primary {
-        border-color: #466baf;
-        padding: 10px;
+        border: none;
+        border-radius: 25px;
+        padding: 12px 24px;
         text-transform: uppercase;
         font-family: 'Signika', sans-serif;
         font-weight: 700;
         color: #fff;
-        background-color: #466baf;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        margin: 5px;
 }
     .btn-primary:hover,
     .btn-primary:focus,
     .btn-primary:active,
     .btn-primary.active,
     .open .dropdown-toggle.btn-primary {
-        border-color: #fff;
+        border: none;
         color: #fff;
-        background-color: #466baf;
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        transform: translateY(-2px);
     }
 
 
