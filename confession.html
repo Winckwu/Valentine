@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💌 有话想对你说...</title>
+    <link rel="stylesheet" href="confession.css">
+</head>
+<body>
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" loop>
+        <source src="hbd.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 开始页面 -->
+    <div id="startPage" class="page active">
+        <div class="start-content">
+            <h1 class="glowing-text">有话想对你说...</h1>
+            <button id="startBtn" class="start-btn">点击开始</button>
+        </div>
+        <div class="floating-hearts">
+            <span class="heart">💗</span>
+            <span class="heart">💖</span>
+            <span class="heart">💕</span>
+            <span class="heart">💝</span>
+            <span class="heart">💗</span>
+            <span class="heart">💖</span>
+        </div>
+    </div>
+
+    <!-- 问题页面 -->
+    <div id="questionPage" class="page">
+        <div class="question-content">
+            <h1 class="question-title">你愿意做我的女朋友吗？</h1>
+            <div class="buttons-container">
+                <button id="yesBtn" class="choice-btn yes-btn">愿意 💕</button>
+                <button id="noBtn" class="choice-btn no-btn">不愿意</button>
+            </div>
+            <p class="hint">（小提示：试试把鼠标放到"不愿意"上~）</p>
+        </div>
+    </div>
+
+    <!-- 表白成功页面 -->
+    <div id="successPage" class="page">
+        <div class="success-content">
+            <h1 class="success-title animate-text">太好了！💝</h1>
+            <div class="confession-text">
+                <p class="fade-in-text" style="animation-delay: 0.5s;">从遇见你的那一刻起</p>
+                <p class="fade-in-text" style="animation-delay: 1s;">我的世界就开始变得不一样</p>
+                <p class="fade-in-text" style="animation-delay: 1.5s;">你的笑容是我见过最美的风景</p>
+                <p class="fade-in-text" style="animation-delay: 2s;">你的声音是我听过最动听的旋律</p>
+                <p class="fade-in-text" style="animation-delay: 2.5s;">我想和你一起</p>
+                <p class="fade-in-text" style="animation-delay: 3s;">看春天的花，夏天的海</p>
+                <p class="fade-in-text" style="animation-delay: 3.5s;">秋天的落叶，冬天的雪</p>
+                <p class="fade-in-text" style="animation-delay: 4s;">我想把最好的都给你</p>
+                <p class="fade-in-text" style="animation-delay: 4.5s;">因为</p>
+                <p class="fade-in-text highlight" style="animation-delay: 5s;">💗 我喜欢你 💗</p>
+                <p class="fade-in-text highlight" style="animation-delay: 5.5s;">💕 很喜欢很喜欢 💕</p>
+            </div>
+        </div>
+        <!-- 爱心雨特效 -->
+        <div class="hearts-rain" id="heartsRain"></div>
+    </div>
+
+    <script src="confession.js"></script>
+</body>
+</html>
